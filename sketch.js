@@ -6,6 +6,7 @@ var EMPTY  = 0;
 var PLAYER = 1;
 var CPU    = 2;
 
+var PLAYER_IS_CPU = true;
 var CPU_IS_FIRST = true;
 
 var CPU_WIN_BIAS = 10000000000;
@@ -79,17 +80,30 @@ function draw()
       {
           // # Player moves
           nodes_explored = 0;
-          if (playerSelected)
+          if (PLAYER_IS_CPU)
           {
-            player_move(board, PLAYER);
-
-            game_over = check_endgame(board, PLAYER);
-            if (game_over)
+            temp = CPU;
+            CPU = PLAYER;
+            PLAYER = temp;
+            cpu_minimax_move(board, CPU_DEPTH);
+            temp = CPU;
+            CPU = PLAYER;
+            PLAYER = temp;
+          }
+          else
+          {
+            if (playerSelected)
             {
-                console.log('you win');
+                player_move(board, PLAYER);
+
+                game_over = check_endgame(board, PLAYER);
+                if (game_over)
+                {
+                    console.log('you win');
+                }
+                playerSelected = false;
+                turn = !turn;
             }
-            playerSelected = false;
-            turn = !turn;
           }
       }
   }
