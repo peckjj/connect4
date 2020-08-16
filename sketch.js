@@ -13,8 +13,8 @@ var CPU_WIN_BIAS = 10000000000;
 var CPU_3_BIAS   = 20;
 var CPU_2_BIAS   = 10;
 
-var PLAYER_CAN_WIN_BIAS = -10000000;
-var PLAYER_3_BIAS   = -10000000;
+var PLAYER_CAN_WIN_BIAS = -100000000;
+var PLAYER_3_BIAS   = -100000;
 var PLAYER_2_BIAS   = -10;
 
 var CENTER_BIAS = 10;
@@ -202,7 +202,28 @@ function score_board(board)
         }
     }
 
+    if (playerCanWin(board))
+    {
+        score += PLAYER_CAN_WIN_BIAS;
+    }
+
     return score;
+}
+
+function playerCanWin(board)
+{
+    let moves = get_valid_moves(board);
+
+    for (let move of moves)
+    {
+        let new_board = deepCopy(board);
+        drop_piece(new_board, move, PLAYER);
+        if (check_endgame(board, PLAYER))
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 function score_window(win)
