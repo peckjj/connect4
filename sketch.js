@@ -54,7 +54,7 @@ function setup()
   //image(boardImage, 0, 0, width, height);
   //noLoop();
   //main();
-  CPU_DEPTH = 6;//parseInt(window.prompt('enter depth'));
+  CPU_DEPTH = 8;//parseInt(window.prompt('enter depth'));
   player = true;//window.prompt('cpu vs player? (y/n)');
 
   PLAYER_IS_CPU = false;//player != "y";
