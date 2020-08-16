@@ -89,6 +89,13 @@ function draw()
             temp = CPU;
             CPU = PLAYER;
             PLAYER = temp;
+            
+            game_over = check_endgame(board, PLAYER);
+                if (game_over)
+                {
+                    console.log('you win');
+                }
+                
             turn = !turn;
           }
           else
