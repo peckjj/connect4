@@ -244,7 +244,7 @@ function minimax(board, depth, a, b, isMax)
         {
             new_board = [...board];
             drop_piece(new_board, move, CPU);
-            new_board_score = minimax(new_board, depth - 1, a, b, False)[1];
+            new_board_score = minimax(new_board, depth - 1, a, b, false)[1];
             
             // # Weight center heavier
             if (move == floor(COLUMNS / 2))
@@ -277,7 +277,7 @@ function minimax(board, depth, a, b, isMax)
         {
             new_board = [...board];
             drop_piece(new_board, move, PLAYER);
-            new_board_score = minimax(new_board, depth - 1, a, b, True)[1];
+            new_board_score = minimax(new_board, depth - 1, a, b, true)[1];
 
             if (new_board_score < value)
             {
@@ -298,7 +298,7 @@ function minimax(board, depth, a, b, isMax)
 
 function cpu_minimax_move(board, depth)
 {
-    drop_piece(board, minimax(board, depth, -Infinity, Infinity, True)[0], CPU);
+    drop_piece(board, minimax(board, depth, -Infinity, Infinity, true)[0], CPU);
 }
 
 function player_move(board, piece)
