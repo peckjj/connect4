@@ -54,6 +54,7 @@ function setup()
   //image(boardImage, 0, 0, width, height);
   //noLoop();
   //main();
+  CPU_DEPTH = parseInt(window.prompt('enter depth'));
 }
 
 function draw()
@@ -95,7 +96,7 @@ function draw()
                 {
                     console.log('you win');
                 }
-                
+
             turn = !turn;
           }
           else
