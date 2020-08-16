@@ -103,7 +103,7 @@ function draw()
 
 function deepCopy(arr)
 {
-    newArr = Array(arr.length);
+    let newArr = Array(arr.length);
     for (i = 0; i < newArr.length; i++)
     {
         newArr[i] = arr[i].slice();
@@ -113,8 +113,8 @@ function deepCopy(arr)
 
 function countElem(arr, val)
 {
-    counter = 0;
-    for (i = 0; i < arr.length; i++)
+    let counter = 0;
+    for (let i = 0; i < arr.length; i++)
     {
         counter += arr[i] == val ? 1 : 0;
     }
@@ -123,24 +123,24 @@ function countElem(arr, val)
 
 function score_board(board)
 {
-    score = 0;
+    let score = 0;
 
     // # Score horizontal
-    for (col = 0; col < COLUMNS - (IN_A_ROW - 1); col++)
+    for (let col = 0; col < COLUMNS - (IN_A_ROW - 1); col++)
     {
-        for (row = 0; row < ROWS; row++)
+        for (let row = 0; row < ROWS; row++)
         {
             score += score_window((board[row].slice(col, col + IN_A_ROW)));
         }
     }
 
     // # Score vertical
-    for (col = 0; col < COLUMNS; col++)
+    for (let col = 0; col < COLUMNS; col++)
     {
-        for (row = 0; row < ROWS - (IN_A_ROW - 1); row++)
+        for (let row = 0; row < ROWS - (IN_A_ROW - 1); row++)
         {
-            win = [];
-            for (i = 0; i < IN_A_ROW; i++)
+            let win = [];
+            for (let i = 0; i < IN_A_ROW; i++)
             {
                 win.push(board[row + i][col]);
             }
@@ -149,12 +149,12 @@ function score_board(board)
     }
 
     // # Score forwardslashers
-    for (col = 0; col < COLUMNS - (IN_A_ROW - 1); col++)
+    for (let col = 0; col < COLUMNS - (IN_A_ROW - 1); col++)
     {
-        for (row = 0; row < ROWS - (IN_A_ROW - 1); row++)
+        for (let row = 0; row < ROWS - (IN_A_ROW - 1); row++)
         {
-            win = [];
-            for (i = 0; i < IN_A_ROW; i++)
+            let win = [];
+            for (let i = 0; i < IN_A_ROW; i++)
             {
                 win.push(board[row + i][col + i]);
             }
@@ -163,12 +163,12 @@ function score_board(board)
     }
 
     // # Score backslashers
-    for (col = IN_A_ROW - 1; col < COLUMNS; col++)
+    for (let col = IN_A_ROW - 1; col < COLUMNS; col++)
     {
-        for (row = 0; row < ROWS - (IN_A_ROW - 1); row++)
+        for (let row = 0; row < ROWS - (IN_A_ROW - 1); row++)
         {
-            win = [];
-            for (i = 0; i < IN_A_ROW; i++)
+            let win = [];
+            for (let i = 0; i < IN_A_ROW; i++)
             {
                 win.push(board[row + i][col - i]);
             }
@@ -181,9 +181,9 @@ function score_board(board)
 
 function score_window(win)
 {
-    ai_count = countElem(win, CPU);
-    player_count = countElem(win, PLAYER);
-    empty_count = countElem(win, EMPTY);
+    let ai_count = countElem(win, CPU);
+    let player_count = countElem(win, PLAYER);
+    let empty_count = countElem(win, EMPTY);
 
     // # AI victory
     if (ai_count == IN_A_ROW)
@@ -220,16 +220,16 @@ function cpu_move_random(board)
 
 function cpu_smart_move(board)
 {
-    best_score = -Infinity;
-    moves = get_valid_moves(board);
-    best_col = random(moves);
+    let best_score = -Infinity;
+    let moves = get_valid_moves(board);
+    let best_col = random(moves);
 
-    for (move of moves)
+    for (let move of moves)
     {
-        new_board = deepCopy(board);
+        let new_board = deepCopy(board);
         drop_piece(new_board, move, CPU);
 
-        new_board_score = score_board(new_board);
+        let new_board_score = score_board(new_board);
 
         // # Weight center heavier
         if ( move == floor(COLUMNS / 2) )
@@ -257,15 +257,15 @@ function minimax(board, depth, a, b, isMax)
     
     if (isMax)
     {
-        value = -Infinity;
-        moves = get_valid_moves(board);
-        best_col = random(moves);
+        let value = -Infinity;
+        let moves = get_valid_moves(board);
+        let best_col = random(moves);
 
-        for (move of moves)
+        for (let move of moves)
         {
-            new_board = deepCopy(board);
+            let new_board = deepCopy(board);
             drop_piece(new_board, move, CPU);
-            new_board_score = minimax(new_board, depth - 1, a, b, false)[1];
+            let new_board_score = minimax(new_board, depth - 1, a, b, false)[1];
             
             // # Weight center heavier
             if (move == floor(COLUMNS / 2))
@@ -290,15 +290,15 @@ function minimax(board, depth, a, b, isMax)
     }
     else
     {
-        value = Infinity;
-        moves = get_valid_moves(board);
-        best_col = random(moves);
+        let value = Infinity;
+        let moves = get_valid_moves(board);
+        let best_col = random(moves);
 
-        for (move of moves)
+        for (let move of moves)
         {
-            new_board = deepCopy(board);
+            let new_board = deepCopy(board);
             drop_piece(new_board, move, PLAYER);
-            new_board_score = minimax(new_board, depth - 1, a, b, true)[1];
+            let new_board_score = minimax(new_board, depth - 1, a, b, true)[1];
 
             if (new_board_score < value)
             {
@@ -319,13 +319,13 @@ function minimax(board, depth, a, b, isMax)
 
 function cpu_minimax_move(board, depth)
 {
-    best_col = minimax(board, depth, -Infinity, Infinity, true)[0]
+    let best_col = minimax(board, depth, -Infinity, Infinity, true)[0]
     drop_piece(board, best_col, CPU);
 }
 
 function player_move(board, piece)
 {
-    col = playerSelection;
+    let col = playerSelection;
 
     drop_piece(board, col, piece);
 }
@@ -333,12 +333,12 @@ function player_move(board, piece)
 function check_endgame(board, piece)
 {
     // # Check horizontal
-    for (col = 0; col < COLUMNS - (IN_A_ROW - 1); col++)
+    for (let col = 0; col < COLUMNS - (IN_A_ROW - 1); col++)
     {
-        for (row = 0; row < ROWS; row++)
+        for (let row = 0; row < ROWS; row++)
         {
-            count = 0;
-            for (i = 0; i < IN_A_ROW; i++)
+            let count = 0;
+            for (let i = 0; i < IN_A_ROW; i++)
             {
                 if (board[row][col + i] == piece)
                 {
@@ -353,12 +353,12 @@ function check_endgame(board, piece)
     }
 
     // # Check vertical
-    for (col = 0; col < COLUMNS; col++)
+    for (let col = 0; col < COLUMNS; col++)
     {
-        for (row = 0; row < ROWS - (IN_A_ROW - 1); row++)
+        for (let row = 0; row < ROWS - (IN_A_ROW - 1); row++)
         {
-            count = 0;
-            for (i = 0; i < IN_A_ROW; i++)
+            let count = 0;
+            for (let i = 0; i < IN_A_ROW; i++)
             {
                 if (board[row + i][col] == piece)
                 {
@@ -373,12 +373,12 @@ function check_endgame(board, piece)
     }
 
     // # Check forwardslashers
-    for (col = 0; col < COLUMNS - (IN_A_ROW - 1); col++)
+    for (let col = 0; col < COLUMNS - (IN_A_ROW - 1); col++)
     {
-        for (row = 0; row < ROWS - (IN_A_ROW - 1); row++)
+        for (let row = 0; row < ROWS - (IN_A_ROW - 1); row++)
         {
-            count = 0;
-            for (i = 0; i < IN_A_ROW; i++)
+            let count = 0;
+            for (let i = 0; i < IN_A_ROW; i++)
             {
                 if (board[row + i][col + i] == piece)
                 {
@@ -393,12 +393,12 @@ function check_endgame(board, piece)
     }
 
     // # Check backslashers
-    for (col = IN_A_ROW - 1; col < COLUMNS; col++)
+    for (let col = IN_A_ROW - 1; col < COLUMNS; col++)
     {
-        for (row = 0; row < ROWS - (IN_A_ROW - 1); row++)
+        for (let row = 0; row < ROWS - (IN_A_ROW - 1); row++)
         {
-            count = 0;
-            for (i = 0; i < IN_A_ROW; i++)
+            let count = 0;
+            for (let i = 0; i < IN_A_ROW; i++)
             {
                 if (board[row + i][col - i] == piece)
                 {
@@ -423,8 +423,8 @@ function check_endgame(board, piece)
 
 function get_valid_moves(board)
 {
-    valid_moves = [];
-    for (col = 0; col < COLUMNS; col++)
+    let valid_moves = [];
+    for (let col = 0; col < COLUMNS; col++)
     {
         if (is_valid_move(board, col))
         {
@@ -436,14 +436,14 @@ function get_valid_moves(board)
 
 function drop_piece(board, col, piece)
 {
-    row = get_next_row(board, col);
+    let row = get_next_row(board, col);
 
     board[row][col] = piece;
 }
 
 function get_next_row(board, col)
 {
-    for (y = 0; y < ROWS; y++)
+    for (let y = 0; y < ROWS; y++)
     {
         if (board[y][col] == 0)
         {
@@ -498,15 +498,15 @@ function drawPiece(row, col, color)
 
 function create_board()
 {
-    board = Array(ROWS);
-    for (i = 0; i < board.length; i++)
+    let board = Array(ROWS);
+    for (let i = 0; i < board.length; i++)
     {
         board[i] = Array(COLUMNS);
     }
 
-    for (row = 0; row < board.length; row++)
+    for (let row = 0; row < board.length; row++)
     {
-        for (col = 0; col < board[row].length; col++)
+        for (let col = 0; col < board[row].length; col++)
         {
             board[row][col] = 0;
         }
