@@ -23,7 +23,7 @@ var CPU_DEPTH = 4;
 var nodes_explored = 0;
 var boardImage;
 
-function countElements(arr, val)
+function count(arr, val)
 {
     counter = 0;
     for (i = 0; i < arr.length; i++)
@@ -49,9 +49,8 @@ function setup()
 
 function draw()
 {
-  
+  return;
 }
-
 
 // Main game loop
 function main()
@@ -160,9 +159,9 @@ function score_board(board)
 
 function score_window(window)
 {
-    ai_count = countElements(window, CPU);
-    player_count = countElements(window, PLAYER);
-    empty_count = countElements(window, EMPTY);
+    ai_count = count(window, CPU);
+    player_count = count(window, PLAYER);
+    empty_count = count(window, EMPTY);
 
     // # AI victory
     if (ai_count == IN_A_ROW)
@@ -320,7 +319,15 @@ function check_endgame(board, piece)
     {
         for (row = 0; row < ROWS; row++)
         {
-            if (countElements(board[row].slice(col, col + IN_A_ROW), piece) == IN_A_ROW)
+            count = 0;
+            for (i = 0; i < IN_A_ROW; i++)
+            {
+                if (board[row][col + i] == piece)
+                {
+                    count += 1;
+                }
+            }
+            if (count == IN_A_ROW)
             {
                 return true;
             }
@@ -332,15 +339,15 @@ function check_endgame(board, piece)
     {
         for (row = 0; row < ROWS - (IN_A_ROW - 1); row++)
         {
-            countElements = 0;
+            count = 0;
             for (i = 0; i < IN_A_ROW; i++)
             {
                 if (board[row + i][col] == piece)
                 {
-                    countElements += 1;
+                    count += 1;
                 }
             }
-            if (countElements == IN_A_ROW)
+            if (count == IN_A_ROW)
             {
                 return true;
             }
@@ -352,15 +359,15 @@ function check_endgame(board, piece)
     {
         for (row = 0; row < ROWS - (IN_A_ROW - 1); row++)
         {
-            countElements = 0;
+            count = 0;
             for (i = 0; i < IN_A_ROW; i++)
             {
                 if (board[row + i][col + i] == piece)
                 {
-                    countElements += 1;
+                    count += 1;
                 }
             }
-            if (countElements == IN_A_ROW)
+            if (count == IN_A_ROW)
             {
                 return true;
             }
@@ -372,15 +379,15 @@ function check_endgame(board, piece)
     {
         for (row = 0; row < ROWS - (IN_A_ROW - 1); row++)
         {
-            countElements = 0;
+            count = 0;
             for (i = 0; i < IN_A_ROW; i++)
             {
                 if (board[row + i][col - i] == piece)
                 {
-                    countElements += 1;
+                    count += 1;
                 }
             }
-            if (countElements == IN_A_ROW)
+            if (count == IN_A_ROW)
             {
                 return true;
             }
