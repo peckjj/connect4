@@ -27,7 +27,7 @@ var CPU_COLOR;
 var PLAYER_COLOR;
 
 var HEIGHT_ADJUSTER = .9;
-var WIDTH_ADJUSTER  = .75;
+var WIDTH_ADJUSTER  = .8;
 
 function preload()
 {
