@@ -76,6 +76,7 @@ function draw()
           game_over = check_endgame(board, CPU);
           if (game_over)
           {
+              alert('you lost :(');
               console.log('you lose');
           }
           turn = !turn;
@@ -97,6 +98,7 @@ function draw()
             game_over = check_endgame(board, PLAYER);
                 if (game_over)
                 {
+                    alert('you win!');
                     console.log('you win');
                 }
 
@@ -111,6 +113,7 @@ function draw()
                 game_over = check_endgame(board, PLAYER);
                 if (game_over)
                 {
+                    alert('you win!');
                     console.log('you win');
                 }
                 playerSelected = false;
