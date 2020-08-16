@@ -149,7 +149,7 @@ function countElem(arr, val)
 
 function score_board(board)
 {
-    let score = 0;
+    var score = 0;
 
     // # Score horizontal
     for (let col = 0; col < COLUMNS - (IN_A_ROW - 1); col++)
