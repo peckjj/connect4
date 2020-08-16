@@ -23,6 +23,9 @@ var CPU_DEPTH = 4;
 var nodes_explored = 0;
 var boardImage;
 
+CPU_COLOR = color(255, 204, 0);
+PLAYER_COLOR = color(255, 100, 100);
+
 function preload()
 {
     boardImage = loadImage('assets/board.png');
