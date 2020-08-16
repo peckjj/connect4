@@ -34,6 +34,7 @@ function setup()
   background(0);
   image(boardImage, 0, 0, width, height);
   noLoop();
+  main();
 }
 
 function draw()
