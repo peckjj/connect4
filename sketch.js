@@ -6,7 +6,7 @@ var EMPTY  = 0;
 var PLAYER = 1;
 var CPU    = 2;
 
-var CPU_IS_FIRST = false;
+var CPU_IS_FIRST = true;
 
 var CPU_WIN_BIAS = 10000000000;
 var CPU_3_BIAS   = 10;
