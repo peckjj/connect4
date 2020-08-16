@@ -446,7 +446,7 @@ function create_board()
     board = Array(ROWS);
     for (i = 0; i < board.length; i++)
     {
-        board = Array(COLUMNS);
+        board[i] = Array(COLUMNS);
     }
 
     for (row = 0; row < board.length; row++)
