@@ -204,7 +204,7 @@ function cpu_smart_move(board)
 
     for (move of moves)
     {
-        new_board = [...board];
+        new_board = board.slice();
         drop_piece(new_board, move, CPU);
 
         new_board_score = score_board(new_board);
@@ -241,7 +241,7 @@ function minimax(board, depth, a, b, isMax)
 
         for (move of moves)
         {
-            new_board = [...board];
+            new_board = board.slice();
             drop_piece(new_board, move, CPU);
             new_board_score = minimax(new_board, depth - 1, a, b, false)[1];
             
@@ -274,7 +274,7 @@ function minimax(board, depth, a, b, isMax)
 
         for (move of moves)
         {
-            new_board = [...board];
+            new_board = board.slice();
             drop_piece(new_board, move, PLAYER);
             new_board_score = minimax(new_board, depth - 1, a, b, true)[1];
 
