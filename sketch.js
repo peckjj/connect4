@@ -6,7 +6,7 @@ var EMPTY  = 0;
 var PLAYER = 1;
 var CPU    = 2;
 
-var CPU_IS_FIRST = true;
+var CPU_IS_FIRST = false;
 
 var CPU_WIN_BIAS = 10000000000;
 var CPU_3_BIAS   = 10;
@@ -26,8 +26,12 @@ var boardImage;
 var CPU_COLOR;
 var PLAYER_COLOR;
 
-var HEIGHT_ADJUSTER = .9;
-var WIDTH_ADJUSTER  = .8;
+var HEIGHT_ADJUSTER = 0.9;
+var WIDTH_ADJUSTER  = 0.8;
+
+board = create_board();
+game_over = false;
+turn = CPU_IS_FIRST;
 
 function preload()
 {
@@ -39,16 +43,47 @@ function setup()
   CPU_COLOR = color(255, 204, 0);
   PLAYER_COLOR = color(255, 100, 100);
 
-  createCanvas(windowWidth / 2, windowHeight / 2, P2D);
+  createCanvas(windowWidth / 2, windowHeight / 2);
   background(0);
-  image(boardImage, 0, 0, width, height);
-  noLoop();
-  main();
+  //image(boardImage, 0, 0, width, height);
+  //noLoop();
+  //main();
 }
 
 function draw()
 {
-  return;
+  // Main game loop
+  if (!game_over)
+  {
+      if (turn)
+      {
+          // # CPU moves
+          // # cpu_move_random(board)
+          // # player_move(board, CPU)
+          //cpu_smart_move(board)
+          cpu_minimax_move(board, CPU_DEPTH);
+
+          game_over = check_endgame(board, CPU);
+          if (game_over)
+          {
+              console.log('you lose');
+          }
+      }
+      else
+      {
+          // # Player moves
+          nodes_explored = 0;
+          player_move(board, PLAYER);
+
+          game_over = check_endgame(board, PLAYER);
+          if (game_over)
+          {
+              console.log('you win');
+          }
+      }
+      turn = !turn;
+  }
+  print_board(board);
 }
 
 function deepCopy(arr)
@@ -69,53 +104,6 @@ function countElem(arr, val)
         counter += arr[i] == val ? 1 : 0;
     }
     return counter;
-}
-
-// Main game loop
-function main()
-{
-    board = create_board();
-
-    game_over = false;
-    turn = CPU_IS_FIRST;
-
-    // Main game loop
-    while (!game_over)
-    {
-        print_board(board);
-
-        if (turn)
-        {
-            // # CPU moves
-            // # cpu_move_random(board)
-            // # player_move(board, CPU)
-            // # cpu_smart_move(board)
-            cpu_minimax_move(board, CPU_DEPTH);
-
-            game_over = check_endgame(board, CPU);
-            if (game_over)
-            {
-                print_board(board);
-                console.log('you lose');
-                break;
-            }
-        }
-        else
-        {
-            // # Player moves
-            nodes_explored = 0;
-            player_move(board, PLAYER);
-
-            game_over = check_endgame(board, PLAYER);
-            if (game_over)
-            {
-                print_board(board);
-                console.log('you win');
-                break;
-            }
-        }
-        turn = !turn;
-    }
 }
 
 function score_board(board)
