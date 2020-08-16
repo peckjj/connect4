@@ -446,6 +446,36 @@ function print_board(board)
     console.log();
     console.log(board);
     console.log('nodes explored: ${nodes_explored}');
+    drawBoard(board);
+}
+
+function drawBoard(board)
+{
+    for (row = 0; row < ROWS; row++)
+    {
+        for (col = 0; col < COLUMNS; col++)
+        {
+            if (board[row][col] == PLAYER)
+            {
+                drawPiece(row, col, PLAYER_COLOR);
+            }
+            else if (board[row][col] == CPU)
+            {
+                drawPiece(row, col, CPU_COLOR);
+            }
+        }
+    }
+    background(0);
+    image(boardImage, 0, 0, width, height);
+}
+
+function drawPiece(row, col, color)
+{
+    push();
+    stroke(color);
+    fill(color);
+
+    ellipse(col * (width / COLUMNS), height - (row * (height / ROWS)), width/COLUMNS, height/ROWS);
 }
 
 function create_board()
