@@ -16,9 +16,9 @@ var PLAYER_WIN_BIAS = -10000000;
 var PLAYER_3_BIAS   = -10000000;
 var PLAYER_2_BIAS   = -100;
 
-var CENTER_BIAS = 4;
+var CENTER_BIAS = 8;
 
-var CPU_DEPTH = 6;
+var CPU_DEPTH = 10;
 
 var nodes_explored = 0;
 var boardImage;
