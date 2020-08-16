@@ -15,9 +15,9 @@ var CPU_2_BIAS   = 10;
 
 var PLAYER_CAN_WIN_BIAS = -10000000;
 var PLAYER_3_BIAS   = -10000000;
-var PLAYER_2_BIAS   = -5;
+var PLAYER_2_BIAS   = -10;
 
-var CENTER_BIAS = 8;
+var CENTER_BIAS = 10;
 
 var CPU_DEPTH = 10;
 
