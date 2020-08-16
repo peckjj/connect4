@@ -457,6 +457,7 @@ function print_board(board)
 
 function drawBoard(board)
 {
+    background(0);
     for (row = 0; row < ROWS; row++)
     {
         for (col = 0; col < COLUMNS; col++)
@@ -471,7 +472,6 @@ function drawBoard(board)
             }
         }
     }
-    background(0);
     image(boardImage, 0, 0, width, height);
 }
 
