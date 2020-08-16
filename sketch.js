@@ -57,7 +57,7 @@ function setup()
   CPU_DEPTH = 6;//parseInt(window.prompt('enter depth'));
   player = true;//window.prompt('cpu vs player? (y/n)');
 
-  PLAYER_IS_CPU = player //!= "y";
+  PLAYER_IS_CPU = false;//player != "y";
 }
 
 function draw()
