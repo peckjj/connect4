@@ -230,7 +230,7 @@ function minimax(board, depth, a, b, isMax)
 
     if (depth == 0 || check_endgame(board, CPU) || check_endgame(board, PLAYER))
     {
-        return [None, score_board(board)];
+        return [null, score_board(board)];
     }
     
     if (isMax)
