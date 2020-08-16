@@ -18,7 +18,7 @@ var PLAYER_2_BIAS   = -100;
 
 var CENTER_BIAS = 4;
 
-var CPU_DEPTH = 4;
+var CPU_DEPTH = 6;
 
 var nodes_explored = 0;
 var boardImage;
