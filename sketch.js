@@ -444,7 +444,7 @@ function drop_piece(board, col, piece)
 
 function get_next_row(board, col)
 {
-    for (y = 0; i < ROWS; y++)
+    for (y = 0; y < ROWS; y++)
     {
         if (board[y][col] == 0)
         {
