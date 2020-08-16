@@ -23,6 +23,16 @@ var CPU_DEPTH = 4;
 var nodes_explored = 0;
 var boardImage;
 
+function count(arr, val)
+{
+    counter = 0;
+    for (i = 0; i < arr.length; i++)
+    {
+        counter += arr[i] == val ? 1 : 0;
+    }
+    return counter;
+}
+
 function preload()
 {
     boardImage = loadImage('assets/board.png');
@@ -146,16 +156,6 @@ function score_board(board)
     }
 
     return score;
-}
-
-function count(arr, val)
-{
-    counter = 0;
-    for (i = 0; i < arr.length; i++)
-    {
-        counter += arr[i] == val ? 1 : 0;
-    }
-    return counter;
 }
 
 function score_window(window)
