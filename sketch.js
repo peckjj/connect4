@@ -27,7 +27,7 @@ var CPU_COLOR;
 var PLAYER_COLOR;
 
 var HEIGHT_ADJUSTER = .9;
-var WIDTH_ADJUSTER  = .9;
+var WIDTH_ADJUSTER  = .75;
 
 function preload()
 {
@@ -484,7 +484,7 @@ function drawPiece(row, col, color)
     stroke(color);
     fill(color);
 
-    ellipse(col * (width / COLUMNS), height - (row * (height / ROWS)), (width/COLUMNS) * WIDTH_ADJUSTER, (height/ROWS) * HEIGHT_ADJUSTER);
+    ellipse(col * (width / COLUMNS) + ((width / COLUMNS) / 2), height - (row * (height / ROWS)), (width/COLUMNS) * WIDTH_ADJUSTER, (height/ROWS) * HEIGHT_ADJUSTER);
 }
 
 function create_board()
