@@ -319,7 +319,8 @@ function minimax(board, depth, a, b, isMax)
 
 function cpu_minimax_move(board, depth)
 {
-    drop_piece(board, minimax(board, depth, -Infinity, Infinity, true)[0], CPU);
+    best_col = minimax(board, depth, -Infinity, Infinity, true)[0]
+    drop_piece(board, best_col, CPU);
 }
 
 function player_move(board, piece)
