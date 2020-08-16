@@ -10,12 +10,12 @@ var PLAYER_IS_CPU = true;
 var CPU_IS_FIRST = true;
 
 var CPU_WIN_BIAS = 10000000000;
-var CPU_3_BIAS   = 10;
-var CPU_2_BIAS   = 5;
+var CPU_3_BIAS   = 20;
+var CPU_2_BIAS   = 10;
 
-var PLAYER_WIN_BIAS = -10000000;
+var PLAYER_CAN_WIN_BIAS = -10000000;
 var PLAYER_3_BIAS   = -10000000;
-var PLAYER_2_BIAS   = -100;
+var PLAYER_2_BIAS   = -5;
 
 var CENTER_BIAS = 8;
 
@@ -346,6 +346,7 @@ function minimax(board, depth, a, b, isMax)
 function cpu_minimax_move(board, depth)
 {
     let best_col = minimax(board, depth, -Infinity, Infinity, true)[0]
+
     drop_piece(board, best_col, CPU);
 }
 
