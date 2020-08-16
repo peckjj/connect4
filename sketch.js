@@ -139,12 +139,12 @@ function score_board(board)
     {
         for (row = 0; row < ROWS - (IN_A_ROW - 1); row++)
         {
-            window = [];
+            win = [];
             for (i = 0; i < IN_A_ROW; i++)
             {
-                window.push(board[row + i][col]);
+                win.push(board[row + i][col]);
             }
-            score += score_window(window);
+            score += score_window(win);
         }
     }
 
@@ -153,12 +153,12 @@ function score_board(board)
     {
         for (row = 0; row < ROWS - (IN_A_ROW - 1); row++)
         {
-            window = [];
+            win = [];
             for (i = 0; i < IN_A_ROW; i++)
             {
-                window.push(board[row + i][col + i]);
+                win.push(board[row + i][col + i]);
             }
-            score += score_window(window);
+            score += score_window(win);
         }
     }
 
@@ -167,23 +167,23 @@ function score_board(board)
     {
         for (row = 0; row < ROWS - (IN_A_ROW - 1); row++)
         {
-            window = [];
+            win = [];
             for (i = 0; i < IN_A_ROW; i++)
             {
-                window.push(board[row + i][col - i]);
+                win.push(board[row + i][col - i]);
             }
-            score += score_window(window);
+            score += score_window(win);
         }
     }
 
     return score;
 }
 
-function score_window(window)
+function score_window(win)
 {
-    ai_count = countElem(window, CPU);
-    player_count = countElem(window, PLAYER);
-    empty_count = countElem(window, EMPTY);
+    ai_count = countElem(win, CPU);
+    player_count = countElem(win, PLAYER);
+    empty_count = countElem(win, EMPTY);
 
     // # AI victory
     if (ai_count == IN_A_ROW)
