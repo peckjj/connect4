@@ -484,7 +484,7 @@ function drawPiece(row, col, color)
     stroke(color);
     fill(color);
 
-    ellipse(col * (width / COLUMNS) + ((width / COLUMNS) / 2), height - (row * (height / ROWS)), (width/COLUMNS) * WIDTH_ADJUSTER, (height/ROWS) * HEIGHT_ADJUSTER);
+    ellipse(col * (width / COLUMNS) + ((width / COLUMNS) / 2), height - (row * (height / ROWS)) - ((height/ROWS) / 2), (width/COLUMNS) * WIDTH_ADJUSTER, (height/ROWS) * HEIGHT_ADJUSTER);
 }
 
 function create_board()
