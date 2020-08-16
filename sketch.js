@@ -89,6 +89,7 @@ function draw()
             temp = CPU;
             CPU = PLAYER;
             PLAYER = temp;
+            turn = !turn;
           }
           else
           {
