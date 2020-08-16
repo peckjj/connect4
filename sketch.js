@@ -29,6 +29,9 @@ var PLAYER_COLOR;
 var HEIGHT_ADJUSTER = 0.9;
 var WIDTH_ADJUSTER  = 0.8;
 
+var playerSelection;
+var playerSelected = false;
+
 board = create_board();
 game_over = false;
 turn = CPU_IS_FIRST;
@@ -42,6 +45,8 @@ function setup()
 {
   CPU_COLOR = color(255, 204, 0);
   PLAYER_COLOR = color(255, 100, 100);
+
+  frameRate(10);
 
   createCanvas(windowWidth / 2, windowHeight / 2);
   background(0);
@@ -68,20 +73,30 @@ function draw()
           {
               console.log('you lose');
           }
+          turn = !turn;
       }
       else
       {
           // # Player moves
           nodes_explored = 0;
-          player_move(board, PLAYER);
-
-          game_over = check_endgame(board, PLAYER);
-          if (game_over)
+          if (playerSelected)
           {
-              console.log('you win');
+            player_move(board, PLAYER);
+
+            game_over = check_endgame(board, PLAYER);
+            if (game_over)
+            {
+                console.log('you win');
+            }
+            playerSelected = false;
+            turn = !turn;
           }
       }
-      turn = !turn;
+  }
+  else
+  {
+      print_board(board);
+      noLoop();
   }
   print_board(board);
 }
@@ -309,13 +324,8 @@ function cpu_minimax_move(board, depth)
 
 function player_move(board, piece)
 {
-    col = parseInt(window.prompt('Select column to drop piece:'));
+    col = playerSelection;
 
-    while (!is_valid_move(board, col))
-    {
-        col = parseInt(window.prompt('Select valid column:'));
-    }
-    
     drop_piece(board, col, piece);
 }
 
@@ -501,4 +511,11 @@ function create_board()
         }
     }
     return board;
+}
+
+function mousePressed()
+{
+    playerSelected = true;
+
+    playerSelection = floor(mouseX / (width / COLUMNS));
 }
