@@ -23,16 +23,6 @@ var CPU_DEPTH = 4;
 var nodes_explored = 0;
 var boardImage;
 
-function count(arr, val)
-{
-    counter = 0;
-    for (i = 0; i < arr.length; i++)
-    {
-        counter += arr[i] == val ? 1 : 0;
-    }
-    return counter;
-}
-
 function preload()
 {
     boardImage = loadImage('assets/board.png');
@@ -50,6 +40,16 @@ function setup()
 function draw()
 {
   return;
+}
+
+function countElem(arr, val)
+{
+    counter = 0;
+    for (i = 0; i < arr.length; i++)
+    {
+        counter += arr[i] == val ? 1 : 0;
+    }
+    return counter;
 }
 
 // Main game loop
@@ -159,9 +159,9 @@ function score_board(board)
 
 function score_window(window)
 {
-    ai_count = count(window, CPU);
-    player_count = count(window, PLAYER);
-    empty_count = count(window, EMPTY);
+    ai_count = countElem(window, CPU);
+    player_count = countElem(window, PLAYER);
+    empty_count = countElem(window, EMPTY);
 
     // # AI victory
     if (ai_count == IN_A_ROW)
