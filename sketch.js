@@ -193,14 +193,14 @@ function score_window(window)
 
 function cpu_move_random(board)
 {
-    drop_piece(board, random.choice(get_valid_moves(board)), CPU);
+    drop_piece(board, random(get_valid_moves(board)), CPU);
 }
 
 function cpu_smart_move(board)
 {
     best_score = -Infinity;
     moves = get_valid_moves(board);
-    best_col = random.choice(moves);
+    best_col = random(moves);
 
     for (move of moves)
     {
@@ -237,7 +237,7 @@ function minimax(board, depth, a, b, isMax)
     {
         value = -Infinity;
         moves = get_valid_moves(board);
-        best_col = random.choice(moves);
+        best_col = random(moves);
 
         for (move of moves)
         {
@@ -270,7 +270,7 @@ function minimax(board, depth, a, b, isMax)
     {
         value = Infinity;
         moves = get_valid_moves(board);
-        best_col = random.choice(moves);
+        best_col = random(moves);
 
         for (move of moves)
         {
