@@ -437,7 +437,7 @@ function print_board(board)
 {
     console.log(' 0 1 2 3 4 5 6');
     console.log();
-    console.log(board, 0);
+    console.log(board);
     console.log('nodes explored: ${nodes_explored}');
 }
 
