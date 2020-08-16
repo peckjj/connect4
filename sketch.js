@@ -321,11 +321,11 @@ function cpu_minimax_move(board, depth)
 
 function player_move(board, piece)
 {
-    col = Integer.parseInt(window.prompt('Select column to drop piece:'));
+    col = parseInt(window.prompt('Select column to drop piece:'));
 
     while (!is_valid_move(board, col))
     {
-        col = Integer.parseInt(window.prompt('Select valid column:'));
+        col = parseInt(window.prompt('Select valid column:'));
     }
     
     drop_piece(board, col, piece);
